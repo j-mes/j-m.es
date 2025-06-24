@@ -1,5 +1,5 @@
 ---
-layout: home.njk
+layout: main.11ty.tsx
 title: Welcome
 ---
 # Hello there…
