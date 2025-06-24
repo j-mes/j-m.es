@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "NodeNext",
+        "skipLibCheck": true,
+        "allowImportingTsExtensions": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "jsx-async-runtime"
+    },
+    "include": ["src/components", "src", "layouts"],
+    "exclude": ["node_modules", "dist"]
+}
