@@ -1,40 +1,42 @@
 {
-	"name": "dotdev",
-	"version": "1.0.0",
+	"name": "j-m.es",
+	"version": "2.0.0",
 	"description": "",
-	"main": ".eleventy.js",
+	"main": "eleventy.config.ts",
+	"type": "module",
 	"scripts": {
-		"build": "eleventy",
-		"build:prod": "ELEVENTY_ENV=production eleventy",
-		"clean": "rm -rf _site src/main.css",
-		"debug": "DEBUG=* eleventy",
-		"publish": "npm run build:prod",
-		"serve": "eleventy --serve",
-		"start": "npm run serve --incremental --quiet"
+		"build": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts",
+		"start": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts --serve --incremental",
+		"test": "vitest run"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/j-mes/dotdev.git"
+		"url": "git+https://github.com/j-mes/j-m.es.git"
 	},
 	"author": "James Loveridge",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/j-mes/dotdev/issues"
+		"url": "https://github.com/j-mes/j-m.es/issues"
 	},
-	"homepage": "https://github.com/j-mes/dotdev#readme",
+	"homepage": "https://github.com/j-mes/j-m.es#readme",
+	"dependencies": {
+		"@11ty/eleventy": "^3.1.1",
+		"jsx-async-runtime": "^1.0.2"
+	},
 	"devDependencies": {
-		"@11ty/eleventy": "^2.0.1",
-		"@11ty/eleventy-plugin-inclusive-language": "^1.0.3",
-		"@11ty/eleventy-plugin-rss": "^1.2.0",
+		"@testing-library/dom": "^10.4.0",
 		"autoprefixer": "^10.4.21",
-		"eslint": "^9.29.0",
-		"eslint-config-prettier": "^10.1.5",
-		"eslint-plugin-prettier": "^5.5.0",
-		"nunjucks": "^3.2.3",
-		"postcss-cli": "^11.0.1",
+		"happy-dom": "^18.0.1",
+		"postcss": "^8.5.6",
 		"postcss-csso": "^6.0.1",
 		"postcss-import": "^16.1.1",
-		"prettier": "^3.6.0"
+		"postcss-nesting": "^13.0.2",
+		"prettier": "^3.5.3",
+		"tsx": "^4.20.3",
+		"vitest": "^3.2.4"
+	},
+	"engines": {
+		"node": ">=24.0.0"
 	},
 	"volta": {
 		"node": "24.2.0"
