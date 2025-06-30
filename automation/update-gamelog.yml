@@ -15,6 +15,10 @@ on:
         description: 'Completion percentage'
         required: true
         type: string
+      trackables:
+        description: 'Trackables (JSON string)'
+        required: false
+        type: string
 
 jobs:
   update-log:
@@ -34,7 +38,8 @@ jobs:
             "${{ github.event.inputs.game }}" \
             "${{ github.event.inputs.hours }}" \
             "${{ github.event.inputs.completion }}" \
-            "${{ github.actor }}"
+            "${{ github.actor }}" \
+            '${{ github.event.inputs.trackables || "{}" }}'
 
       - name: Commit changes
         run: |

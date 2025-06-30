@@ -6,12 +6,16 @@ type LogEntry = {
   completion: number;
   deltaHours?: number;
   deltaCompletion?: number;
+  trackables?: Record<string, number>;
+  deltaTrackables?: Record<string, number>;
 };
 
 type GameProgress = {
   startDate: string;
   lastUpdated: string;
   lastUpdatedBy: string;
+  trackables?: string[];
+  cupTotal?: number;
   logs: LogEntry[];
 };
 
@@ -22,15 +26,15 @@ function parseDate(dateString: string): Date {
 
 export default function GameProgressPage() {
   const games = Object.entries(progress as Record<string, GameProgress>);
-  const sorted = games.sort(([, a], [, b]) => parseDate(b.lastUpdated).getTime() - parseDate(a.lastUpdated).getTime());
+  const sortedGames = games.sort(([, a], [, b]) => parseDate(b.lastUpdated).getTime() - parseDate(a.lastUpdated).getTime());
 
   return (
     <main>
       <h1>🎮 Game Progress Tracker</h1>
 
-      {sorted.map(([game, info]) => (
-        <section key={game}>
-          <h2>{game}</h2>
+      {sortedGames.map(([title, info]) => (
+        <section key={title}>
+          <h2>{title}</h2>
           <p>
             <strong>Started:</strong> {info.startDate}<br />
             <strong>Last Updated:</strong> {info.lastUpdated} by {info.lastUpdatedBy}
@@ -44,6 +48,21 @@ export default function GameProgressPage() {
                 )}
                 {" — "}
                 <small>{entry.date}</small>
+                {entry.trackables && (
+                  <ul style={{ marginLeft: "1rem" }}>
+                    {Object.entries(entry.trackables).map(([item, value]) => {
+                      const showTotal = item === "3-Star GP" && info.cupTotal;
+                      return (
+                        <li key={item}>
+                          {item}: {value}{showTotal ? `/${info.cupTotal}` : ""}
+                          {entry.deltaTrackables?.[item] !== undefined && (
+                            <> (<em>+{entry.deltaTrackables[item]}</em>)</>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>

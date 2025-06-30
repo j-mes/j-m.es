@@ -1,20 +1,109 @@
 {
-  "Tears of the Kingdom": {
+  "Breath of the Wild": {
     "startDate": "20/06/2025",
-    "lastUpdated": "23/06/2025",
-    "lastUpdatedBy": "gamer-alt",
+    "lastUpdated": "20/06/2025",
+    "lastUpdatedBy": "howlsome",
+    "trackables": ["Korok Seeds"],
     "logs": [
       {
         "date": "20/06/2025",
-        "hours": 25,
-        "completion": 59
-      },
+        "hours": 10,
+        "completion": 15,
+        "trackables": {
+          "Korok Seeds": 42
+        }
+      }
+    ]
+  },
+  "Tears of the Kingdom": {
+    "startDate": "21/06/2025",
+    "lastUpdated": "21/06/2025",
+    "lastUpdatedBy": "howlsome",
+    "trackables": ["Korok Seeds"],
+    "logs": [
+      {
+        "date": "21/06/2025",
+        "hours": 12,
+        "completion": 20,
+        "trackables": {
+          "Korok Seeds": 55
+        }
+      }
+    ]
+  },
+  "Link's Awakening": {
+    "startDate": "22/06/2025",
+    "lastUpdated": "22/06/2025",
+    "lastUpdatedBy": "howlsome",
+    "trackables": ["Heart Pieces", "Seashells"],
+    "logs": [
+      {
+        "date": "22/06/2025",
+        "hours": 6,
+        "completion": 40,
+        "trackables": {
+          "Heart Pieces": 8,
+          "Seashells": 30
+        }
+      }
+    ]
+  },
+  "Echoes of Wisdom": {
+    "startDate": "23/06/2025",
+    "lastUpdated": "23/06/2025",
+    "lastUpdatedBy": "howlsome",
+    "trackables": ["Instruments", "Upgrades"],
+    "logs": [
       {
         "date": "23/06/2025",
-        "hours": 27,
-        "completion": 64,
-        "deltaHours": 2,
-        "deltaCompletion": 5
+        "hours": 3,
+        "completion": 12,
+        "trackables": {
+          "Instruments": 2,
+          "Upgrades": 1
+        }
+      }
+    ]
+  },
+  "MarioKart World": {
+    "startDate": "24/06/2025",
+    "lastUpdated": "24/06/2025",
+    "lastUpdatedBy": "howlsome",
+    "trackables": ["Princess Coins", "P-Switches", "? Blocks", "VR", "3-Star GP"],
+    "cupTotal": 18,
+    "logs": [
+      {
+        "date": "24/06/2025",
+        "hours": 5,
+        "completion": 25,
+        "trackables": {
+          "Princess Coins": 80,
+          "P-Switches": 12,
+          "? Blocks": 15,
+          "VR": 1300,
+          "3-Star GP": 4
+        }
+      }
+    ]
+  },
+  "MarioKart 8 Deluxe": {
+    "startDate": "25/06/2025",
+    "lastUpdated": "25/06/2025",
+    "lastUpdatedBy": "howlsome",
+    "trackables": ["Vehicle Unlocks", "Characters", "Tracks", "VR", "3-Star GP"],
+    "cupTotal": 24,
+    "logs": [
+      {
+        "date": "25/06/2025",
+        "hours": 9,
+        "completion": 30,
+        "trackables": {
+          "Vehicle Unlocks": 6,
+          "Characters": 9,
+          "Tracks": 20,
+          "VR": 1450,
+          "3-Star GP": 5
+        }
       }
     ]
   }
