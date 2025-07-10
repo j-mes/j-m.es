@@ -1,0 +1,37 @@
+[
+	{
+		"tag": "notes",
+		"title": "Intermittent Notes",
+		"permalink": "/feed/notes.xml",
+		"rss": true,
+		"groupByYear": true
+	},
+	{
+		"tag": "recipes",
+		"title": "Cooking Recipes",
+		"permalink": "/feed/recipes.xml",
+		"rss": true,
+		"groupByYear": false
+	},
+	{
+		"tag": "gaming",
+		"title": "Gaming",
+		"permalink": "/feed/gaming.xml",
+		"rss": false,
+		"groupByYear": false
+	},
+	{
+		"tag": "workbench",
+		"title": "Workbench",
+		"permalink": "/feed/workbench.xml",
+		"rss": true,
+		"groupByYear": false
+	},
+	{
+		"tag": "coding",
+		"title": "Coding Projects",
+		"permalink": "/feed/coding.xml",
+		"rss": true,
+		"groupByYear": false
+	}
+]
