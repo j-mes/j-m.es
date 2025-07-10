@@ -1,4 +1,4 @@
-import { ViewProps } from '../../../eleventy.config.ts';
+import { ViewProps } from '../utils/view-props.ts';
 
 export function siteLayout({ content, title }: ViewProps): JSX.Element {
 	return (

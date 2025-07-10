@@ -59,8 +59,3 @@ export default function (eleventyConfig: any) {
 		},
 	};
 }
-
-export type ViewProps = {
-	content?: string;
-	title?: string;
-};
