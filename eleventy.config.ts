@@ -2,6 +2,7 @@ import { processCSS } from './src/config/utils/css-processing.ts';
 import { tsxTransform } from './src/config/utils/tsx-transforming.ts';
 import { registerCollections } from './src/config/utils/register-collections.ts';
 import { getContentPermalink } from './src/config/utils/content-permalinks.ts';
+import imageShortcode from './src/config/utils/image-shortcode.ts';
 
 export default function (eleventyConfig: any) {
 	// Define the location of the CSS file (bouth source and compiled)
@@ -36,6 +37,9 @@ export default function (eleventyConfig: any) {
 				debug: process.env.ELEVENTY_DEBUG_PERMALINKS === 'true',
 			}),
 	});
+
+	// Register the shortcode
+	eleventyConfig.addShortcode('image', imageShortcode);
 
 	// Eleventy Pass Throughs
 	// Add CNAME for j-m.es
