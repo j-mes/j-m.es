@@ -1,82 +1,57 @@
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import postCssImport from 'postcss-import';
-import postCssNesting from 'postcss-nesting';
-import postCssCsso from 'postcss-csso';
-import { jsxToString } from 'jsx-async-runtime';
-import fs from 'node:fs';
+import { processCSS } from './src/config/utils/css-processing.ts';
+import { tsxTransform } from './src/config/utils/tsx-transforming.ts';
+import { registerCollections } from './src/config/utils/register-collections.ts';
+import { getContentPermalink } from './src/config/utils/content-permalinks.ts';
 
 export default function (eleventyConfig: any) {
-    // Add a hook to process CSS with PostCSS plugins before Eleventy builds
-    eleventyConfig.on('beforeBuild', async () => {
-        const sourceFile: string = './src/styles/index.css';
-        const compiledFile: string = './dist/style.css';
+	// Define the location of the CSS file (bouth source and compiled)
+	const sourceFile: string = './src/assets/styles/index.css';
+	const compiledFile: string = './dist/style.css';
 
-        try {
-            // Remove the old compiled CSS file if it exists
-            try {
-                await fs.promises.unlink(compiledFile);
-                console.log(
-                    `💥 Eradicated the ancient, decrepit and old CSS file: ${compiledFile}`
-                );
-            } catch (err: any) {
-                if (err.code !== 'ENOENT') {
-                    throw err;
-                }
-                // Ignore error if file does not exist
-            }
+	// Add a hook to process CSS with PostCSS plugins before Eleventy builds
+	eleventyConfig.on('beforeBuild', async () => {
+		// for debugging, turn false into true to see logs
+		await processCSS(sourceFile, compiledFile, false);
+	});
 
-            // Read the source CSS file
-            const css: Buffer = await fs.promises.readFile(sourceFile);
+	// Add the CSS file to Eleventy's watch targets
+	eleventyConfig.addWatchTarget(sourceFile);
+	eleventyConfig.addWatchTarget('src/assets/components/**/*.css');
 
-            // Process the CSS with PostCSS plugins: import, autoprefixer, and csso
-            const result = await postcss([
-                postCssImport,
-                postCssNesting,
-                autoprefixer,
-                postCssCsso
-            ]).process(css.toString(), { from: sourceFile, to: compiledFile });
+	// Add custom extensions for Eleventy to recognise
+	eleventyConfig.addExtension(['11ty.jsx', '11ty.ts', '11ty.tsx'], {
+		key: '11ty.js',
+	});
 
-            // Write the processed CSS to the compiled file
-            await fs.promises.writeFile(compiledFile, result.css);
-            console.log(
-                `🎉 Successfully compiled the wonderful and new CSS file: ${compiledFile}`
-            );
-        } catch (error) {
-            console.error('⛔️ Error processing CSS:', error);
-        }
-    });
+	// Add a transform to process `.tsx` files and render them to a string
+	eleventyConfig.addTransform('tsx', tsxTransform);
 
-    // Add the CSS file to Eleventy's watch targets
-    eleventyConfig.addWatchTarget('src/styles/index.css');
-    eleventyConfig.addWatchTarget('src/styles/components/*.css');
+	// Register JSON-driven collections
+	registerCollections(eleventyConfig);
 
-    // Add custom extensions for Eleventy to recognise
-    eleventyConfig.addExtension(['11ty.jsx', '11ty.ts', '11ty.tsx'], {
-        key: '11ty.js'
-    });
+	// Overrides permalink for templates inside src/content
+	eleventyConfig.addGlobalData('eleventyComputed', {
+		permalink: (data: any) =>
+			getContentPermalink(data, {
+				debug: process.env.ELEVENTY_DEBUG_PERMALINKS === 'true',
+			}),
+	});
 
-    // Add a transform to process `.tsx` files and render them to a string
-    eleventyConfig.addTransform('tsx', async (content: any) => {
-        const result: string = await jsxToString(content);
-        return `<!doctype html>\n${result}`;
-    });
-
-    // Eleventy Pass Throughs
-	eleventyConfig.addPassthroughCopy('./src/images');
+	// Eleventy Pass Throughs
 	eleventyConfig.addPassthroughCopy('./src/CNAME');
 
-    // Return the configuration object with input and output directory settings
-    return {
-        dir: {
-            input: 'src', // Source directory for input files
-            layouts: 'layouts', // Directory for layout files
-            output: 'dist' // Output directory for generated files
-        }
-    };
+	// Return the configuration object with input and output directory settings
+	return {
+		dir: {
+			input: 'src', // Source directory for input files
+			includes: 'assets', // Directory for components, styles and images
+			layouts: 'config/layouts', // Directory for layout files
+			output: 'dist', // Output directory for generated files
+		},
+	};
 }
 
 export type ViewProps = {
-    content?: string;
-    title?: string;
+	content?: string;
+	title?: string;
 };
