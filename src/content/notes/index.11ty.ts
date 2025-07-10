@@ -7,7 +7,7 @@ if (!config) throw new Error(`Collection config not found for tag "${tag}"`);
 
 export const data = {
   title: config.title,
-  layout: "archivePage.tsx",
+  layout: "archive.11ty.tsx",
   eleventyComputed: {
     items: (data) => {
       return (data.collections[tag] || []).map((item) => ({
