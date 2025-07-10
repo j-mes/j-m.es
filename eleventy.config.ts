@@ -38,7 +38,12 @@ export default function (eleventyConfig: any) {
 	});
 
 	// Eleventy Pass Throughs
+	// Add CNAME for j-m.es
 	eleventyConfig.addPassthroughCopy('./src/CNAME');
+	// All content and images
+	eleventyConfig.addPassthroughCopy({ 'src/content': 'content' });
+	// Shared fallback image
+	eleventyConfig.addPassthroughCopy({ 'src/assets/images': 'assets/images' });
 
 	// Return the configuration object with input and output directory settings
 	return {
