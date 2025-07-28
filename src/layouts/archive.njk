@@ -1,0 +1,50 @@
+{% extends "main.njk" %}
+{% block content %}
+<main class="archive">
+	<h1>{{ entries.title }}</h1>
+	<p style="background: lightyellow">✅ archive.njk rendered</p>
+
+	{% if content %}
+	<div class="archive-intro">
+		{{ content | safe }}
+	</div>
+	{% endif %}
+
+	{% if collectionKey %}
+	{% set items = collections[collectionKey].items %}
+	<pre>collections[{{ collectionKey }}].items: {{ items | length }}</pre>
+	{# Archive list #}
+	{% if items and items | length > 0 %}
+	{% if groupByYear %}
+		{% for year in items | groupByYear %}
+			<section id="year-{{ year.year }}">
+			<h2>{{ year.year }}</h2>
+			<ul>
+				{% for entry in year.items %}
+				<li>
+					<a href="{{ entry.url }}">{{ entry.data.title }}</a>
+					<span style="color: #888">— <time>{{ entry.date }}</time></span>
+				</li>
+				{% endfor %}
+			</ul>
+			</section>
+		{% endfor %}
+		{% else %}
+		<ul>
+			{% for entry in items %}
+			<li>
+				<a href="{{ entry.url }}">{{ entry.data.title }}</a>
+				<span style="color: #888">— <time>{{ entry.date }}</time></span>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	{% else %}
+		<p>No entries found.</p>
+	{% endif %}
+	{% else %}
+	<p style="color: red; font-weight: bold">No collectionKey set in frontmatter or data file for this archive page.</p>
+	{% endif %}
+
+</main>
+{% endblock %}

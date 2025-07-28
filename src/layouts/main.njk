@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>{{ title }}</title>
+		<link rel="stylesheet" href="/styles/main.css" />
+	</head>
+	<body>
+		<header>
+			<h1>{{ title }}</h1>
+		</header>
+		<main>
+			<p style="background: orange">📄 main.njk loaded</p>
+			{% block content %}{% endblock %}
+		</main>
+		<footer>
+			<p>footer</p>
+		</footer>
+	</body>
+</html>
