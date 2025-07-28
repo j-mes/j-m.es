@@ -1,7 +1,6 @@
 ---
-layout: main.11ty.tsx
-title: Welcome
+title: hello
+layout: main
 ---
-# Hello there…
 
-I'm a Deaf Software Engineer who breaks things for a living at the FT. Formerly a grumpy commuter and a tormented Arsenal fan. This should show a change. Hello.
+Sup
