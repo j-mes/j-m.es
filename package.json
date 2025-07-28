@@ -5,9 +5,10 @@
 	"main": "eleventy.config.ts",
 	"type": "module",
 	"scripts": {
-		"build": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts",
-		"start": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts --serve --incremental",
-		"test": "vitest run"
+		"build": "eleventy --config=eleventy.config.js",
+		"start": "eleventy --config=eleventy.config.js --serve --incremental",
+		"clean": "rm -rf dist _site .cache .eleventy_cache",
+		"clean:npm": "npm cache clean --force"
 	},
 	"repository": {
 		"type": "git",
@@ -20,20 +21,15 @@
 	},
 	"homepage": "https://github.com/j-mes/j-m.es#readme",
 	"dependencies": {
-		"@11ty/eleventy": "^3.1.1",
-		"jsx-async-runtime": "^1.0.2"
+		"@11ty/eleventy": "^3.1.2"
 	},
 	"devDependencies": {
-		"@testing-library/dom": "^10.4.0",
 		"autoprefixer": "^10.4.21",
-		"happy-dom": "^18.0.1",
 		"postcss": "^8.5.6",
 		"postcss-csso": "^6.0.1",
 		"postcss-import": "^16.1.1",
 		"postcss-nesting": "^13.0.2",
-		"prettier": "^3.5.3",
-		"tsx": "^4.20.3",
-		"vitest": "^3.2.4"
+		"prettier": "^3.6.2"
 	},
 	"engines": {
 		"node": ">=24.0.0"
