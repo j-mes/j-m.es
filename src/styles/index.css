@@ -1,0 +1,34 @@
+/* src/styles/main.css */
+:root {
+	--font-body: system-ui;
+}
+
+body {
+	font-family: var(--font-body);
+	line-height: 1.6;
+
+	h1 {
+		font-size: 2rem;
+		color: steelblue;
+	}
+
+	p {
+		margin-bottom: 1em;
+	}
+
+	.archive {
+		h2 {
+			margin-top: 2em;
+		}
+
+		ul {
+			padding-left: 1.2em;
+		}
+	}
+
+	.post {
+		max-width: 40rem;
+		margin: auto;
+		padding: 2rem;
+	}
+}
