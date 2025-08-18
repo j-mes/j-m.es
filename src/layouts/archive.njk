@@ -1,0 +1,46 @@
+{% extends "main.njk" %}
+{% block content %}
+<main class="archive">
+	<h1>{{ entries.title }}</h1>
+
+	{% if content %}
+	<div class="archive-intro">
+		{{ content | safe }}
+	</div>
+	{% endif %}
+
+	{% if collectionKey %}
+	{% set items = collections[collectionKey].items %}
+	{# Archive list #}
+	{% if items and items | length > 0 %}
+	{% if groupByYear %}
+		{% for year in items | groupByYear %}
+			<section id="year-{{ year.year }}">
+			<h2>{{ year.year }}</h2>
+			<ul>
+				{% for entry in year.items %}
+				<li>
+					<a href="{{ entry.url }}">{{ entry.data.title }}</a> &ndash; <time>{{ entry.date.toLocaleDateString('en-GB', { day: "numeric", month: "long" }) }}</time>
+				</li>
+				{% endfor %}
+			</ul>
+			</section>
+		{% endfor %}
+		{% else %}
+		<ul>
+			{% for entry in items %}
+			<li>
+				<a href="{{ entry.url }}">{{ entry.data.title }}</a> &ndash; <time>{{ entry.date.toLocaleDateString('en-GB', { day: "numeric", month: "long" }) }}</time>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	{% else %}
+		<p>No entries found.</p>
+	{% endif %}
+	{% else %}
+		<pre><code>No collectionKey set in frontmatter or data file for this archive page.</code></pre>
+	{% endif %}
+
+</main>
+{% endblock %}

@@ -1,0 +1,9 @@
+{# src/layouts/post.njk #} 
+{% extends "main.njk" %} 
+{% block content %}
+<article class="post">
+	{{ content | safe }}
+	<span><em>{{ date.toLocaleDateString('en-GB', { day: "numeric", month: "long", year: "numeric" }) }}</em></span>
+	<p><a href="/notes" aria-label="Back to notes">&larrhk; Back to notes</a></p>
+</article>
+{% endblock %}
