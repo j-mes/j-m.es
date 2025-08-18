@@ -1,11 +1,7 @@
 ---
-title: Notes Archive
+title: Intermittent notes…
 layout: archive
 collectionKey: notes
 groupByYear: true
 rss: true
 ---
-
-Intermittent notes
-
-This is a test to see if it works.
