@@ -6,6 +6,8 @@ import { setupLayoutAliases } from './src/helpers/setup-layout-aliases.js';
 import { setupShortcodes } from './src/helpers/setup-shortcodes.js';
 import imageShortcode from './src/helpers/image-shortcode.js';
 import { setupFilters } from './src/helpers/setup-filters.js';
+import formatDate from './src/helpers/setup-format-date.js';
+import truncateWords from './src/helpers/truncate-words.js';
 import groupByYear from './src/helpers/group-by-year.js';
 import { setupCollections } from './src/helpers/setup-collections.js';
 import { setupEleventyBefore } from './src/helpers/setup-eleventy-before.js';
@@ -37,7 +39,9 @@ export default function (eleventyConfig) {
 
 	// Setup filters
 	setupFilters(eleventyConfig, {
-		groupByYear
+		groupByYear,
+		date: formatDate,
+		truncateWords,
 		// Add more filters here as needed
 	});
 

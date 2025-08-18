@@ -1,34 +1,86 @@
 /* src/styles/main.css */
 :root {
-	--font-body: system-ui;
+	--colour-light: #EFEFEF;
+	--colour-dark: #222222;
+	--colour-link: darkcyan;
+	--colour-link-alt: yellow;
+	--type-size: 100%;
+	--type-stack: 'system', sans-serif;
+	--line-height: 1.9;
+	--character-width: 72ch;
+}
+
+@font-face {
+	font-family: system;
+	font-style: normal;
+	font-weight: 300;
+	src:	local('.SFNSText-Light'),
+			local('.HelveticaNeueDeskInterface-Light'),
+			local('.LucidaGrandeUI'),
+			local('Ubuntu Light'),
+			local('Segoe UI Light'),
+			local('Roboto-Light'),
+			local('DroidSans'),
+			local('Tahoma');
 }
 
 body {
-	font-family: var(--font-body);
-	line-height: 1.6;
+	box-sizing: border-box;
+	background-color: var(--colour-light);
+	color: var(--colour-dark);
+	font-family: var(--type-stack);
+	font-size: var(--type-size);
+	line-height: var(--line-height);
+	max-width: var(--character-width);
+	margin: auto;
+	padding: 20px;
+	width: 100%;
+}
 
-	h1 {
-		font-size: 2rem;
-		color: steelblue;
+a {
+	color: var(--colour-link);
+	font-weight: 600;
+}
+
+img {
+	height: auto;
+	width: 100%;
+}
+
+footer {
+	padding: 2rem 0;
+}
+
+footer svg {
+	height: 1rem;
+	width: auto;
+}
+
+footer a svg path {
+	fill: var(--colour-link);
+}
+
+footer ul {
+	list-style: none;
+	text-align: right;
+}
+
+footer li {
+	display: inline-block;
+	padding: 0 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: var(--colour-dark);
+		color: var(--colour-light);
 	}
 
-	p {
-		margin-bottom: 1em;
+	a {
+		color: var(--colour-link-alt);
 	}
 
-	.archive {
-		h2 {
-			margin-top: 2em;
-		}
-
-		ul {
-			padding-left: 1.2em;
-		}
-	}
-
-	.post {
-		max-width: 40rem;
-		margin: auto;
-		padding: 2rem;
+	footer a svg path {
+		fill: var(--colour-link-alt);
 	}
 }

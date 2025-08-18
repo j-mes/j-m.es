@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 	<head>
 		<meta charset="utf-8" />
-		<title>{{ title }}</title>
-		<link rel="stylesheet" href="/styles/main.css" />
+		<title>{{ title }} | {{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}</title>
+		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<header>
+			<a href="/" title="{{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}">{{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}</a>
 			<h1>{{ title }}</h1>
 		</header>
-		<main>
-			<p style="background: orange">📄 main.njk loaded</p>
 			{% block content %}{% endblock %}
-		</main>
 		<footer>
-			<p>footer</p>
+			{# Do something nice here? #}
 		</footer>
 	</body>
 </html>
