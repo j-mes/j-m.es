@@ -1,57 +1,73 @@
-name: Build & Deploy
+name: Build & Deploy # CI workflow: build site (PRs) and deploy (push to main)
+
+# This workflow performs two core tasks for this Eleventy (11ty) static site:
+# 1. On every pull request to main: build the site to ensure it compiles (no deploy).
+# 2. On every push to main: build + publish the generated static files to GitHub Pages.
+#
+# Layout:
+# - build job: Always runs (push & PR). Generates ./dist using Eleventy.
+# - deploy job: Only runs for push events to main. Retrieves previously uploaded artifact & deploys.
+#
+# To change the output directory: update eleventy.config.js (dir.output) and the 'path:' under 'Upload Pages artifact'.
+# To change Node version: adjust node-version below (and optionally package.json engines / Volta pin).
+# To add additional checks (lint/tests), insert steps in the build job before the upload.
 
 on:
-  push:
-    branches: ['main']
-  pull_request:
-    branches: ['main']
+    push: # Full pipeline (build + deploy)
+        branches:
+            - main
+    pull_request: # Validation only (build)
+        branches:
+            - main
 
-# Least-privilege permissions for Pages
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Avoid overlapping deployments
-concurrency:
-  group: pages
-  cancel-in-progress: true
+    contents: read # Global default; deploy job requests elevated (pages, id-token) permissions explicitly
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build: # Responsible for compiling the site; safe to run on PRs
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Set up Node.js # Also enables built-in dependency caching for npm
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '24.2.0'
+                  cache: 'npm'
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+            - name: Install dependencies # Uses package-lock for reproducible installs
+              run: npm ci
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24.2.0'
-          cache: 'npm'
+            - name: Build # Eleventy -> generates static site into ./dist (configured in eleventy.config.js)
+              run: npm run build
 
-      - name: Install dependencies
-        run: npm ci
+            # Only configure & upload artifact when destined to deploy
+            - name: Configure Pages # Preps repository metadata for Pages (idempotent)
+              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+              uses: actions/configure-pages@v5
 
-      - name: Build
-        run: npm run build
+            - name: Upload Pages artifact # Uploads ./dist as the deployment artifact (retained by deploy job)
+              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./dist
 
-      # Only deploy on push to main
-      - name: Configure Pages
+    deploy: # Publishes the previously uploaded artifact to GitHub Pages
+        # Only runs for push events (never for pull_request), gate keeps deployment
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-      - name: Deploy to GitHub Pages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        id: deployment
-        uses: actions/deploy-pages@v4
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            pages: write # Publish to Pages
+            id-token: write # OIDC token for deployment
+            contents: read # (Implicit) for completeness
+        concurrency:
+            group: pages
+            cancel-in-progress: true
         environment:
-          name: github-pages
-          url: ${{ steps.deployment.outputs.page_url }}
+            name: github-pages
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
+              # Output 'page_url' is available as steps.deployment.outputs.page_url for follow-up steps if ever added
