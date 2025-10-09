@@ -1,9 +1,17 @@
-{# src/layouts/post.njk #} 
-{% extends "main.njk" %} 
+{# src/layouts/post.njk #}
+{% extends "main.njk" %}
 {% block content %}
-<article class="post">
-	{{ content | safe }}
-	<span><em>{{ date.toLocaleDateString('en-GB', { day: "numeric", month: "long", year: "numeric" }) }}</em></span>
-	<p><a href="/notes" aria-label="Back to notes">&larrhk; Back to notes</a></p>
+<article role="article" aria-labelledby="post-title">
+	<header>
+		<h2 id="post-title">{{ title }}</h2>
+		<time datetime="{{ date.toISOString() }}">{{ date.toLocaleDateString('en-GB', { day: "numeric", month: "long", year: "numeric" }) }}</time>
+	</header>
+
+	<section>{{ content | safe }}</section>
+
+	<nav aria-label="Post navigation">
+		<p><a href="/notes" rel="up">&larrhk; Back to notes</a></p>
+	</nav>
+
 </article>
 {% endblock %}
