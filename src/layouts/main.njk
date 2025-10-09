@@ -2,16 +2,24 @@
 <html lang="en-GB">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{{ title }} | {{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}</title>
-		<link rel="stylesheet" href="/style.css" />
+		{% include 'meta-tags.njk' %}
 	</head>
 	<body>
-		<header>
-			<a href="/" title="{{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}">{{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}</a>
-			<h1>{{ title }}</h1>
+		<a href="#main-content">Skip to main content</a>
+		<header role="banner" aria-label="Site header">
+			<div>
+				<a href="/" title="{{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}">{{ metadata.siteName }} &ndash; {{ metadata.jobTitle }}</a>
+			</div>
+			<h1 id="page-title">{{ title }}</h1>
 		</header>
+
+		<main id="main-content" role="main" aria-labelledby="page-title">
 			{% block content %}{% endblock %}
-		<footer>
+		</main>
+
+		<footer role="contentinfo" aria-label="Site footer">
 			{# Do something nice here? #}
 		</footer>
 	</body>
