@@ -1,7 +1,7 @@
 {# src/layouts/home.njk #}
 {% extends "main.njk" %}
 {% block content %}
-<article class="post">
+<article>
 	{{ content | safe }}
 
 	{%- if collections.notes -%}
@@ -12,17 +12,17 @@
 	{%- endif -%}
 
 	{% if latest %}
-	<section class="latest-intermittent-note">
-		<h2>Latest intermittent note</h2>
+	<section aria-labelledby="latest-heading">
+		<h2 id="latest-heading">Latest intermittent note</h2>
 		<h3><a href="{{ latest.url }}">{{ latest.data.title or latest.data.page.title or latest.fileSlug }}</a></h3>
-		<div class="note-content">
-			{{ latest.templateContent | striptags(true) | truncateWords(80)| safe }}
+		<div aria-describedby="latest-excerpt">
+			<p id="latest-excerpt">{{ latest.templateContent | striptags(true) | truncateWords(80)| safe }}</p>
 		</div>
 	</section>
 	{% endif %}
 
-	<section class="archives">
-		<h2>Here's the other things for intermittent notes</h2>
+	<section aria-labelledby="archives-heading">
+		<h2 id="archives-heading">Here's the other things for intermittent notes</h2>
 		<ul>
 			{% if collections.notes %}
 				<li><a href="/notes/">Archives</a></li>

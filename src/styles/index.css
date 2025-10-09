@@ -84,3 +84,34 @@ footer li {
 		fill: var(--colour-link-alt);
 	}
 }
+
+/* Accessible skip-to-content link (classless) */
+/* Target the page anchor used in templates: href="#main-content" */
+a[href="#main-content"] {
+	position: absolute;
+	left: -999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px); /* legacy */
+	white-space: nowrap;
+	border: 0;
+	padding: 0;
+}
+
+a[href="#main-content"]:focus,
+a[href="#main-content"]:focus-visible {
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	clip: auto;
+	background: var(--colour-dark);
+	color: var(--colour-light);
+	padding: 0.25rem 0.5rem;
+	border-radius: 4px;
+	z-index: 1000;
+	text-decoration: none;
+}
