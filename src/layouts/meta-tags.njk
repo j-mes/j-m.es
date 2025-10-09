@@ -1,0 +1,55 @@
+{# Reusable head meta partial used by layouts/main.njk #}
+<meta name="description" content="{{ page.data.description or metadata.description or '' }}" />
+<link rel="canonical" href="{{ (metadata.siteUrl or '') ~ page.url }}" />
+<link rel="stylesheet" href="/style.css" />
+
+{# Open Graph / Facebook / generic social #}
+<meta property="og:site_name" content="{{ metadata.siteName }}" />
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:description" content="{{ page.data.description or metadata.description or '' }}" />
+<meta property="og:type" content="{{ page.data.ogType or 'website' }}" />
+<meta property="og:url" content="{{ (metadata.siteUrl or '') ~ page.url }}" />
+{% if page.data.image or metadata.socialImage %}
+<meta property="og:image" content="{{ (metadata.siteUrl or '') ~ (page.data.image or metadata.socialImage) }}" />
+{% endif %}
+{% if metadata.fbAppId %}
+<meta property="fb:app_id" content="{{ metadata.fbAppId }}" />
+{% endif %}
+
+{# Twitter card #}
+<meta name="twitter:card" content="{{ page.data.twitterCard or 'summary_large_image' }}" />
+{% if metadata.twitterHandle %}
+<meta name="twitter:site" content="{{ metadata.twitterHandle }}" />
+<meta name="twitter:creator" content="{{ metadata.twitterHandle }}" />
+{% endif %}
+<meta name="twitter:title" content="{{ title }}" />
+<meta name="twitter:description" content="{{ page.data.description or metadata.description or '' }}" />
+{% if page.data.image or metadata.socialImage %}
+<meta name="twitter:image" content="{{ (metadata.siteUrl or '') ~ (page.data.image or metadata.socialImage) }}" />
+{% endif %}
+
+{# oEmbed discovery (JSON and XML) - some platforms may use this for rich embeds #}
+{% if page.data.oembed or metadata.oembed %}
+<link rel="alternate" type="application/json+oembed" href="{{ (metadata.siteUrl or '') ~ (page.data.oembed or metadata.oembed) }}" title="{{ title }} oEmbed JSON" />
+<link rel="alternate" type="text/xml+oembed" href="{{ (metadata.siteUrl or '') ~ (page.data.oembedXml or metadata.oembedXml) }}" title="{{ title }} oEmbed XML" />
+{% endif %}
+
+{# rel-me links for decentralised identity (Bluesky, Mastodon, etc.) #}
+{% if metadata.bluesky %}
+<link rel="me" href="{{ metadata.bluesky }}" />
+{% endif %}
+{% if metadata.mastodon %}
+<link rel="me" href="{{ metadata.mastodon }}" />
+{% endif %}
+
+{# Robots / PWA hints #}
+<meta name="robots" content="{{ page.data.robots or metadata.robots or 'index, follow' }}" />
+{% if metadata.themeColor %}
+<meta name="theme-color" content="{{ metadata.themeColor }}" />
+{% endif %}
+{% if metadata.manifest %}
+<link rel="manifest" href="{{ metadata.manifest }}" />
+{% endif %}
+
+{# Generic RSS/feed link for discoverability #}
+<link rel="alternate" type="application/rss+xml" title="{{ metadata.siteName }} RSS" href="/feed.xml" />
