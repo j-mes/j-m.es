@@ -48,6 +48,10 @@ img {
 	width: 100%;
 }
 
+section {
+	padding: 0 0 2rem;
+}
+
 footer {
 	padding: 2rem 0;
 }
