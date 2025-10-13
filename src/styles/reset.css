@@ -30,9 +30,9 @@ Notes for maintainers:
 
 html {
 	color-scheme: light dark;
-	font:
-		clamp(1rem, 1rem + 0.5vw, 2rem) / 1.4 system-ui,
-		sans-serif;
+	font-size: clamp(1rem, 1rem + 0.5vw, 2rem);
+	font-family: system-ui, sans-serif;
+	line-height: 1.9;
 	tab-size: 4;
 	hanging-punctuation: first allow-end last;
 	word-break: break-word;
