@@ -31,8 +31,8 @@ Notes for maintainers:
 html {
 	color-scheme: light dark;
 	font:
-	clamp(1rem, 1rem + 0.5vw, 2rem) / 1.4 system-ui,
-	sans-serif;
+		clamp(1rem, 1rem + 0.5vw, 2rem) / 1.4 system-ui,
+		sans-serif;
 	tab-size: 4;
 	hanging-punctuation: first allow-end last;
 	word-break: break-word;
@@ -87,7 +87,11 @@ a {
 	text-underline-offset: 2px;
 
 	&:not(:is(:hover, :focus)) {
-		text-decoration-color: color-mix(in srgb, currentColor, transparent 50%);
+		text-decoration-color: color-mix(
+			in srgb,
+			currentColor,
+			transparent 50%
+		);
 	}
 }
 
@@ -112,7 +116,7 @@ ol,
 dl {
 	margin: 0;
 	padding: 0;
-	list-style: inside;
+	/* list-style: inside; */
 	ul,
 	ol,
 	dl {
@@ -153,22 +157,18 @@ label {
 
 input:not(
 	:where(
-	[type="submit"],
-	[type="checkbox"],
-	[type="radio"],
-	[type="button"],
-	[type="reset"]
+		[type='submit'],
+		[type='checkbox'],
+		[type='radio'],
+		[type='button'],
+		[type='reset']
 	)
 ) {
 	inline-size: 100%;
 }
 
 button,
-input:where(
-	[type="submit"],
-	[type="reset"],
-	[type="button"]
-) {
+input:where([type='submit'], [type='reset'], [type='button']) {
 	background: CanvasText;
 	color: Canvas;
 	border: 1px solid transparent;
@@ -192,7 +192,7 @@ svg {
 	fill: currentColor;
 }
 
-[aria-disabled="true" i],
+[aria-disabled='true' i],
 [disabled] {
 	cursor: not-allowed;
 }
@@ -237,7 +237,7 @@ table {
 	td {
 		font-size: 90%;
 	}
-	
+
 	td,
 	th {
 		word-break: normal;
@@ -246,7 +246,7 @@ table {
 	}
 }
 
-[role="region"][aria-labelledby][tabindex] {
+[role='region'][aria-labelledby][tabindex] {
 	overflow: auto;
 }
 
@@ -272,7 +272,7 @@ caption {
 	@view-transition {
 		navigation: auto;
 	}
-	
+
 	html {
 		interpolate-size: allow-keywords;
 		&:focus-within {
@@ -280,4 +280,3 @@ caption {
 		}
 	}
 }
-
