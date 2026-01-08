@@ -1,0 +1,79 @@
+:root {
+    color-scheme: light dark;
+
+    --bg-base: light-dark(var(--ref-color-white-90), var(--ref-color-black-40));
+    --bg-base-inverse: light-dark(
+        var(--ref-color-black-40),
+        var(--ref-color-white-90)
+    );
+    --font-family-mono: var(--ref-font-family-mono);
+    --font-family-sans: var(--ref-font-family-sans);
+    --font-family-serif: var(--ref-font-family-serif);
+
+    --font-weight-thin: var(--ref-font-weight-thin);
+    --font-weight-extralight: var(--ref-font-weight-extralight);
+    --font-weight-light: var(--ref-font-weight-light);
+    --font-weight-regular: var(--ref-font-weight-regular);
+    --font-weight-medium: var(--ref-font-weight-medium);
+    --font-weight-semibold: var(--ref-font-weight-semibold);
+    --font-weight-bold: var(--ref-font-weight-bold);
+    --font-weight-extrabold: var(--ref-font-weight-extrabold);
+    --font-weight-black: var(--ref-font-weight-black);
+
+    --link-color: light-dark(
+        var(--ref-color-accent-pink),
+        var(--ref-color-accent-blue)
+    );
+    --link-color-hover: light-dark(
+        var(--ref-color-accent-pink-hover),
+        var(--ref-color-accent-blue-hover)
+    );
+
+    --text-primary: light-dark(
+        var(--ref-color-black-90),
+        var(--ref-color-white-90)
+    );
+    --text-secondary: light-dark(
+        var(--ref-color-black-70),
+        var(--ref-color-white-70)
+    );
+    --text-tertiary: light-dark(
+        var(--ref-color-black-60),
+        var(--ref-color-white-60)
+    );
+    --text-inverse: light-dark(
+        var(--ref-color-white-90),
+        var(--ref-color-black-90)
+    );
+
+    --accent-blue: var(--ref-color-accent-blue);
+    --accent-pink: var(--ref-color-accent-pink);
+
+    --accent-blue-text: #1d5a6d; /* AAA against white-90 and black-40 */
+    --accent-pink-text: #8a2f25; /* AAA against white-90 and black-40 */
+
+    --accent-blue-bg: light-dark(
+        var(--ref-color-accent-blue),
+        var(--ref-color-accent-pink)
+    );
+    --accent-pink-bg: light-dark(
+        var(--ref-color-accent-pink),
+        var(--ref-color-accent-blue)
+    );
+
+    --spacing-xs: var(--ref-spacing-xs);
+    --spacing-s: var(--ref-spacing-s);
+    --spacing-m: var(--ref-spacing-m);
+    --spacing-l: var(--ref-spacing-l);
+    --spacing-xl: var(--ref-spacing-xl);
+    --spacing-2xl: var(--ref-spacing-2xl);
+    --spacing-3xl: var(--ref-spacing-3xl);
+    --spacing-4xl: var(--ref-spacing-4xl);
+    --spacing-5xl: var(--ref-spacing-5xl);
+
+    --radii-xs: var(--ref-radii-xs);
+    --radii-s: var(--ref-radii-s);
+    --radii-m: var(--ref-radii-m);
+    --radii-l: var(--ref-radii-l);
+    --radii-xl: var(--ref-radii-xl);
+}

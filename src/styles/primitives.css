@@ -1,0 +1,65 @@
+:root {
+    /* font-family */
+    --ref-font-family-mono: ui-mono, monospace;
+    --ref-font-family-sans: system-ui, sans-serif;
+    --ref-font-family-serif: ui-serif, Georgia, serif;
+
+    /* font-weight */
+    --ref-font-weight-thin: 100;
+    --ref-font-weight-extralight: 200;
+    --ref-font-weight-light: 300;
+    --ref-font-weight-regular: 400;
+    --ref-font-weight-medium: 500;
+    --ref-font-weight-semibold: 600;
+    --ref-font-weight-bold: 700;
+    --ref-font-weight-extrabold: 800;
+    --ref-font-weight-black: 900;
+
+    /* 9 shades of black */
+    --ref-color-black-10: #3f3f48;
+    --ref-color-black-20: #36363f;
+    --ref-color-black-30: #303038;
+    --ref-color-black-40: #2a2a2e; /* switch 2 grey */
+    --ref-color-black-50: #26262b;
+    --ref-color-black-60: #202024;
+    --ref-color-black-70: #1a1a1d;
+    --ref-color-black-80: #141414;
+    --ref-color-black-90: #0d0d0d;
+
+    /* 9 shades of white */
+    --ref-color-white-10: #a7a7a4;
+    --ref-color-white-20: #b3b3b0;
+    --ref-color-white-30: #bfbfbc;
+    --ref-color-white-40: #cacac7;
+    --ref-color-white-50: #d4d4d1;
+    --ref-color-white-60: #dededb;
+    --ref-color-white-70: #e7e7e4;
+    --ref-color-white-80: #efefec;
+    --ref-color-white-90: #f7f7f5;
+
+    /* accent colors */
+    --ref-color-accent-charcoal: #29333b;
+    --ref-color-accent-blue: #4ae2fc;
+    --ref-color-accent-blue-hover: #58b2ce;
+    --ref-color-accent-pink: #fa9b8b;
+    --ref-color-accent-pink-hover: #de6e60;
+    --ref-color-accent-yellow: #ffdb3a;
+
+    /* spacing */
+    --ref-spacing-xs: 4px;
+    --ref-spacing-s: 8px;
+    --ref-spacing-m: 12px;
+    --ref-spacing-l: 18px;
+    --ref-spacing-xl: 22px;
+    --ref-spacing-2xl: 26px;
+    --ref-spacing-3xl: 30px;
+    --ref-spacing-4xl: 34px;
+    --ref-spacing-5xl: 38px;
+
+    /* radii */
+    --ref-radii-xs: 2px;
+    --ref-radii-s: 4px;
+    --ref-radii-m: 8px;
+    --ref-radii-l: 12px;
+    --ref-radii-xl: 16px;
+}
