@@ -24,7 +24,7 @@
 		"@11ty/eleventy": "^3.1.5"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.12",
+		"@biomejs/biome": "2.4.13",
 		"autoprefixer": "^10.5.0",
 		"postcss": "^8.5.10",
 		"postcss-csso": "^6.0.1",
