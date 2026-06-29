@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.4.13",
 		"autoprefixer": "^10.5.0",
-		"postcss": "^8.5.12",
+		"postcss": "^8.5.16",
 		"postcss-csso": "^6.0.1",
 		"postcss-import": "^16.1.1",
 		"postcss-nesting": "^14.0.0",
