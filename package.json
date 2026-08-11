@@ -21,7 +21,7 @@
 	},
 	"homepage": "https://github.com/j-mes/j-m.es#readme",
 	"dependencies": {
-		"@11ty/eleventy": "^3.1.5"
+		"@11ty/eleventy": "^3.1.6"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.13",
