@@ -1,0 +1,70 @@
+name: Update Game Log
+
+on:
+  workflow_dispatch:
+    inputs:
+      game:
+        description: 'Game title'
+        required: true
+        type: string
+      hours:
+        description: 'Total hours played'
+        required: true
+        type: string
+      completion:
+        description: 'Completion percentage'
+        required: true
+        type: string
+      trackables:
+        description: 'Trackables (JSON string)'
+        required: false
+        type: string
+
+jobs:
+  update-log:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Run update script
+        run: |
+          node scripts/update-progress.js \
+            "${{ github.event.inputs.game }}" \
+            "${{ github.event.inputs.hours }}" \
+            "${{ github.event.inputs.completion }}" \
+            "${{ github.actor }}" \
+            '${{ github.event.inputs.trackables || "{}" }}'
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout -b update-${{ github.run_number }}
+          git add _data/progress.json
+          git commit -m "Game log: ${{ github.event.inputs.game }} by ${{ github.actor }}"
+          git push origin update-${{ github.run_number }}
+
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-${{ github.run_number }}
+          title: "Game log update: ${{ github.event.inputs.game }}"
+          body: |
+            Update submitted by @${{ github.actor }}
+            - Hours: ${{ github.event.inputs.hours }}
+            - Completion: ${{ github.event.inputs.completion }}%
+
+      - name: Enable auto-merge
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
